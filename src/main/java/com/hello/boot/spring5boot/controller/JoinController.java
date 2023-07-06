@@ -1,10 +1,15 @@
 package com.hello.boot.spring5boot.controller;
 
+import com.hello.boot.spring5boot.model.Checkme;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -25,6 +30,24 @@ public class JoinController {
 
         return "join/checkme";
     }
+
+    @PostMapping("/checkme")
+    public String checkmeok(Checkme checkme, HttpSession sess){
+        logger.info("join/checkmeok 호출!!");
+        // checkme에 보낸 개인정보를 세션에 저장하고
+        // joinme로 이동
+
+        String viewPage =  "redirect:/join/checkme";
+
+        if (checkme.getName() != null) {
+            sess.setAttribute("checkme",checkme);
+            viewPage =  "redirect:/join/joinme";
+
+        }
+
+        return viewPage;
+    }
+
     @GetMapping("/joinme")
     public String joinme(){
         logger.info("join/joinme 호출!!");
