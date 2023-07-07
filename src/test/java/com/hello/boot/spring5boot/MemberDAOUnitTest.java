@@ -14,8 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 import java.sql.SQLOutput;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @MybatisTest
@@ -35,6 +37,17 @@ public class MemberDAOUnitTest {
         int result = mdao.insertMember(m);
         System.out.println(result);
         assertEquals(result,1);
+    }
+
+
+    @Test
+    @DisplayName("MemberDAO select Test")
+    void selectMember(){
+       List<Member> result = mdao.selectMember();
+
+
+        System.out.println(result);
+        assertNotNull(result);
     }
 
 }
