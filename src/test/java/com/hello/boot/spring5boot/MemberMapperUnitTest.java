@@ -13,7 +13,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -32,5 +35,15 @@ public class MemberMapperUnitTest {
         System.out.println(result);
         assertEquals(result,1);
     }
+    @Test
+    @DisplayName("MemberMapper select Test")
+    void selectMember(){
+        List<Member> result = memberMapper.selectMember();
+
+
+        System.out.println(result);
+        assertNotNull(result);
+    }
+
 
 }
