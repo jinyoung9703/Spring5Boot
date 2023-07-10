@@ -35,6 +35,7 @@ cancelbtn2?.addEventListener('click',()=>{
 let zipbtn= document.querySelector("#findzipbtn");
 let dong = document.querySelector("#dong");
 let addrlist = document.querySelector("#addrlist");
+let sendzip = document.querySelector("#sendzip");
 const showzipaddr = (jsons) => {
     jsons = JSON.parse(jsons); // 문자열을 json객체로 변환
     let addr = '';
@@ -55,4 +56,20 @@ zipbtn?.addEventListener('click',() =>{
        .then(text => showzipaddr(text))
 });
 
+sendzip?.addEventListener('click',()=>{
+    let frm = document.forms.joinfrm;
+    let addr = addrlist.value;  // 선택한 주소 항목
+    if (addr !==''){
+        // 123-456 서웅ㄹ 관악구 신림동
+        let zip = addr.split(' ')[0];   //우편번호 추출
+        let vaddr =
+            `${addr.split(' ')[1]} ${addr.split(' ')[2]} ${addr.split(' ')[3]}`;  //주소 추출
 
+        frm.zip1.value = zip.split('-')[0];
+        frm.zip2.value = zip.split('-')[1];
+        frm.addr1.value = vaddr;
+
+    }else{
+        alert('주소를 선택하세요!!');
+    }
+});
