@@ -64,7 +64,7 @@ public class JoinController {
         String viewPage = "redirect:/join/fail";
 
         if (msrv.saveMember(m))
-            viewPage = "redirect:join/joinok";
+            viewPage = "redirect:/join/joinok";
 
         return viewPage;
     }
