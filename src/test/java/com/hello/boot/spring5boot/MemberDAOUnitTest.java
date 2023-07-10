@@ -49,5 +49,14 @@ public class MemberDAOUnitTest {
         System.out.println(result);
         assertNotNull(result);
     }
+    @Test
+    @DisplayName("MemberDAO checkUserid Test")
+    void checkUserid(){
+        String uid = "abc123";
+        int result = mdao.selectOneUserid(uid);
+
+        System.out.println(result);
+        assertEquals(result,1);
+    }
 
 }
