@@ -40,4 +40,9 @@ public class MemberDAOImpl implements MemberDAO{
 
         return memberMapper.findZipcode(dong);
     }
+
+    @Override
+    public int selectOneUserid(String uid) {
+        return memberMapper.selectOneUserid(uid);
+    }
 }
