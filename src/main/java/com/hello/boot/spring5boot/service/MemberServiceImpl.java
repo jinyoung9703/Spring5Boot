@@ -66,6 +66,11 @@ public class MemberServiceImpl implements MemberService{
         return json;
     }
 
+    @Override
+    public int checkuid(String uid) {
+        return mdao.selectOneUserid(uid);
+    }
+
 }
 
 
