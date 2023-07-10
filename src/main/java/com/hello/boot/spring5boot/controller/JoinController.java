@@ -7,10 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
@@ -93,6 +90,17 @@ public class JoinController {
         res.setContentType("application/json; charset=utf-8");
         // 검색된 결과를 뷰 없이 바로 응답(response)으로 출력
         res.getWriter().print( msrv.findzip(dong) );
+
+    }
+    // 아이디 중복검사
+    // /join/checkuid?uidd=아이디
+    // /join/checkuid/아이디
+    @GetMapping("/checkuid/{uid}")
+    @ResponseBody
+    public void checkuid(@PathVariable String uid, HttpServletResponse res) throws IOException {
+        res.setContentType("application/json; charset=utf-8");
+
+        res.getWriter().print( msrv.checkuid(uid) );
 
     }
 
