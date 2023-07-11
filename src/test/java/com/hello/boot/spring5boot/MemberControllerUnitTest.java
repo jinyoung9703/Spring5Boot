@@ -38,4 +38,14 @@ public class MemberControllerUnitTest {
                 .andExpect(status().is3xxRedirection())
                 .andDo(print());
     }
+
+    @Test
+    @DisplayName("MemberController login Test")
+    void login() throws Exception {
+        mvc.perform(post("/join/login")
+                        .param("userid","abc123")
+                        .param("passwd","987xyz"))
+                .andExpect(status().is3xxRedirection())
+                .andDo(print());
+    }
 }
