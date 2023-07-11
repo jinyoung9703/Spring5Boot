@@ -42,6 +42,7 @@ let modal = null;   // 우편번호 모달(검색)
 
 let email3 = document.querySelector("#email3");
 
+// 우편번호 검색 모달창 띄우기
 zipbtn?.addEventListener('click', ()=> {
     while(addrlist.lastChild){
         addrlist.removeChild(addrlist.lastChild);
@@ -56,15 +57,21 @@ zipbtn?.addEventListener('click', ()=> {
     modal.show();     // 모달창 띄우기
 });
 
+// 검색한 우편번호 결과 출력
 const showzipaddr = (jsons) => {
     jsons = JSON.parse(jsons); // 문자열을 json객체로 변환
     let addr = '';
     jsons.forEach(function (data,idx){ // josn 반복처리
+        //주소의 번지가 null인 경우 비칸 처림
+        let bunji = (data['bunji'] !== null) ? data['bunji'] : '';
+
         addr += `<option>${data['zipcode']} ${data['sido']} 
-            ${data['gugun']} ${data['dong']} ${data['bunji']} </option>`;
+            ${data['gugun']} ${data['dong']} ${bunji} </option>`;
     });
     addrlist.innerHTML = addr;
 };
+
+//우편번호 검색
 fzipbtn?.addEventListener('click',() =>{
    if (dong.value === '') {
        alert('동이름을 입력하세요!!');
@@ -76,6 +83,7 @@ fzipbtn?.addEventListener('click',() =>{
        .then(text => showzipaddr(text))
 });
 
+// 주소 선택하고 닫기
 sendzip?.addEventListener('click',()=>{
     let frm = document.forms.joinfrm;
     let addr = addrlist.value;  // 선택한 주소 항목
@@ -95,6 +103,7 @@ sendzip?.addEventListener('click',()=>{
     }
 });
 
+//전자우편 주소 선택
 email3?.addEventListener('click', () => {
     let frm = document.forms.joinfrm;
     if (email3.value === '직접입력하기') {
@@ -113,8 +122,8 @@ dong?.addEventListener('keydown',(e) => {
 });
 
 //비밀번호 확인
-let pwd = document.joinfrm.passwd;
-let repwd = document.joinfrm.repasswd;
+let pwd = document.querySelector("#pwd");
+let repwd = document.querySelector("#repasswd");
 let pwdmsg = document.querySelector("#pwdmsg");
 
 repwd?.addEventListener('blur',()=>{
@@ -128,8 +137,8 @@ repwd?.addEventListener('blur',()=>{
     pwdmsg.innerText = pmsg;
 });
 // 아이디 중복검사
-let userid = document.joinfrm.userid;
-let checkuid = document.joinfrm.checkuid;
+let userid = document.querySelector("#uid");
+let checkuid = document.querySelector("#checkuid");
 let uidmsg = document.querySelector("#uidmsg");
 
 const styleCheckuid = (chkuid) => {
@@ -144,6 +153,8 @@ const styleCheckuid = (chkuid) => {
     }
     uidmsg.innerText = umsg;
 };
+
+// 아이디 중복 검사
 userid?.addEventListener('blur',() =>{
     if (userid.value === '') {
         uidmsg.innerText = '6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다';
@@ -159,28 +170,34 @@ userid?.addEventListener('blur',() =>{
 
 // 회원정보 저장
 let joinbtn = document.querySelector("#joinbtn");
-joinbtn?.addEventListener('click',()=>{
+joinbtn?.addEventListener('click', () => {
     let frm = document.forms.joinfrm;
 
-    if(frm.userid.value === '') alert('아이디를 입력하세요!!');
-    else if(frm.passwd.value === '') alert('비밀번호를 입력하세요!!');
-    else if(frm.repasswd.value === '') alert('비밀번호 확인을 입력하세요!!');
-    else if(frm.zip1.value === '' || frm.zip2.value === '') alert('우편번호을 입력하세요!!');
-    else if(frm.addr1.value === '' || frm.addr2.value === '') alert('주소를 입력하세요!!');
-    else if(frm.email1.value === '' || frm.email2.value === '') alert('전자우편을 입력하세요!!');
-    else if(frm.phone2.value === '' || frm.phone3.value === '') alert('전화번호를을 입력하세요!!');
-    else if(grecaptcha.getResponse() === '') alert('자동가입방지를 클릭하세요!!');
-    else if(checkuid.value === 'no') alert('아이디 중복검사를 하세요!!');
+    if (frm.userid.value === '') alert('아이디를 입력하세요!!');
+    else if (frm.passwd.value === '') alert('비밀번호를 입력하세요!!');
+    else if (frm.repasswd.value === '') alert('비밀번호 확인을 입력하세요!!');
+    else if (frm.zip1.value === '' || frm.zip2.value === '') alert('우편번호를 입력하세요!!');
+    else if (frm.addr1.value === '' || frm.addr2.value === '') alert('주소를 입력하세요!!');
+    else if (frm.email1.value === '' || frm.email2.value === '') alert('전자우편을 입력하세요!!');
+    else if (frm.phone2.value === '' || frm.phone3.value === '') alert('전화번호를 입력하세요!!');
+    else if (grecaptcha.getResponse() === '') alert('자동가입방지를 클릭하세요!!');
+    else if (checkuid.value === 'no') alert('아이디 중복검사를 하세요!!');
     else {
-        frm.jumin.value = frm.jumin1.value+'-'+frm.jumin2.value;
-        frm.zipcode.value = frm.zip1.value+'-'+frm.zip2.value;
-        frm.email.value = frm.email1.value+'@'+frm.email2.value;
-        frm.phone.value = frm.phone1.value+'-'+frm.phone2.value+'-'+frm.phone3.value;
+        frm.jumin.value = frm.jumin1.value + '-' + frm.jumin2.value;
+        frm.zipcode.value = frm.zip1.value + '-' + frm.zip2.value;
+        frm.email.value = frm.email1.value + '@' + frm.email2.value;
+        frm.phone.value = frm.phone1.value + '-' + frm.phone2.value
+            + '-' + frm.phone3.value;
 
         frm.method = 'post';
         frm.submit();
-
     }
 
 
+});
+
+// joinok
+let go2idx = document.querySelector("#go2idx");
+go2idx?.addEventListener('click', () =>{
+    location.href ='/';
 });
