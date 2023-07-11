@@ -109,17 +109,24 @@ public class JoinController {
 
     // 로그인 처리
     @PostMapping("/login")
-    public String login(Member m, HttpSession sess){
+    public String login(Member m, HttpSession sess) {
         logger.info("login 호출!!");
         String returnPage = "redirect:/loginfail";
 
         m = msrv.readOneMember(m);
-        if(m != null) {
+        if (m != null) {
             sess.setAttribute("member", m);
-        returnPage = "redirect:/login";
+            returnPage = "redirect:/";
         }
-        return "redirect:/Index";
 
+        return returnPage;
     }
+    @RequestMapping("/logout")
+    public String logout(HttpSession sess){
+        sess.invalidate(); // 세션 객체 제거
+
+        return "redirect:/";
+    }
+
 
 }
