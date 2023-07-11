@@ -207,14 +207,21 @@ go2idx?.addEventListener('click', () =>{
 let loginbtn = document.querySelector("#loginbtn");
 let lguid = document.querySelector("#userid");
 let lgpwd = document.querySelector("#passwd");
-let lgfrm = document.querySelector("#lgnfrm")
+let lgfrm = document.querySelector("#lgnfrm");
 
-loginbtn?.addEventListener('click',()=>{
-    if(lguid.value === '') alert('아이디 입력하세요!!');//유효성검사
-    else if(lgpwd.value === '') alert('비밀번호를입력하세요!!');
-    else{
+loginbtn?.addEventListener('click', () => {
+    if (lguid.value === '') alert('아이디 입력하세요!!');
+    else if (lgpwd.value === '') alert('비밀번호 입력하세요!!');
+    else {
         lgfrm.method = 'post';
         lgfrm.action = '/join/login';
         lgfrm.submit();
     }
+});
+
+//logout
+let lgoutbtn = document.querySelector("#lgoutbtn");
+
+lgoutbtn?.addEventListener('click',()=>{
+    location.href='/join/logout';
 });
