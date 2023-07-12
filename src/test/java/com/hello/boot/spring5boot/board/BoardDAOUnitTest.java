@@ -28,7 +28,9 @@ public class BoardDAOUnitTest {
     @Test
     @DisplayName("BoardDAO select Test")
     void selectBoard(){
-        List<Board> results = bdao.selectBoard();
+        int cpg = 1;
+        int stnum = (cpg - 1) *25;
+        List<Board> results = bdao.selectBoard(stnum);
         //System.out.println(results);
 
         assertNotNull(results);
@@ -36,3 +38,9 @@ public class BoardDAOUnitTest {
     }
 
 }
+/* page 1 :0~24
+*  page 2 :25~49
+*  page 3 :50~74
+*
+*  page n :m~m+25
+*  m = (n-1) * 25 */
