@@ -1,4 +1,4 @@
-package com.hello.boot.spring5boot;
+package com.hello.boot.spring5boot.member;
 
 
 import com.hello.boot.spring5boot.dao.MemberDAO;
@@ -10,10 +10,8 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringRunner;
 
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
