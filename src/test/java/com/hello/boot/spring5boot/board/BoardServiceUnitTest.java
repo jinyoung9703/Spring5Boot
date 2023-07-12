@@ -37,6 +37,15 @@ public class BoardServiceUnitTest {
        // System.out.println(result);
         assertNotNull(result);
     }
+    @Test
+    @DisplayName("BoardService readOne Test")
+    void readOneBoard(){
+        String bno = "1269";
+
+        Board result = bsrv.readOneBoard(bno);
+
+        assertNotNull(result);
+    }
 
 
 
