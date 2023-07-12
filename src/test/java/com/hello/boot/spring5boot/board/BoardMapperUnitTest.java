@@ -2,9 +2,7 @@ package com.hello.boot.spring5boot.board;
 
 
 import com.hello.boot.spring5boot.model.Board;
-import com.hello.boot.spring5boot.model.Member;
 import com.hello.boot.spring5boot.mybatis.BoardMapper;
-import com.hello.boot.spring5boot.mybatis.MemberMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -26,7 +24,9 @@ public class BoardMapperUnitTest {
     @Test
     @DisplayName("boardMapper select Test")
     void selectBoard(){
-        List<Board> result = boardMapper.selectBoard();
+        int cpg = 1;
+        int stnum = (cpg - 1) *25;
+        List<Board> result = boardMapper.selectBoard(stnum);
 
         System.out.println(result);
         assertNotNull(result);
