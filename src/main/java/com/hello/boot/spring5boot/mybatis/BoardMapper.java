@@ -10,7 +10,7 @@ import java.util.List;
 public interface BoardMapper {
     int insertBoard(Board m);
 
-    List<Board> selectBoard();
+    List<Board> selectBoard(int stnum);
 
     Board selectOneBoard(String bno);
 }
