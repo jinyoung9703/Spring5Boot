@@ -87,12 +87,16 @@
                         <li th:class="${(cpg -1 gt 0) ? 'page-item' : 'page-item disabled'}">
                             <a th:href="|${pglink}${cpg - 1}|" class="page-link">이전</a></li>
 
+                            <!--  출력페이지 i가 총페이지수 cntpg보다 작거나 같으면 출력 -->
                             <!-- 1 ~ 10 숫자를 선언해서 i 값으로 빼온다-->
-                        <th:block th:each="i :${#numbers.sequence(1, 10)}">
-                            <li th:class="${(i ne cpg) ? 'page-item' : 'page-item active'}">
-                                <a th:href="|/board/list/${i}|"th:text="${i}"class="page-link">1</a></li>
-                        </th:block>
 
+                        <th:block th:each="i :${#numbers.sequence(stpg, stpg+9)}">
+                            <th:block th:if="${(i le cntpg)}">
+                            <li th:class="${(i ne cpg) ? 'page-item' : 'page-item active'}">
+                                <a th:href="|/board/list/${i}|"class="page-link"
+                                   th:text="${i}">1</a></li>
+                            </th:block>
+                        </th:block>
                         <!-- '현재 페이지가 +1' 이 총페이지보다 같거나 작으면 '다음' 링크 활성 -->
                         <li th:class="${(cpg + 1 le cntpg) ? 'page-item' : 'page-item disabled'}">
                             <a th:href="|${pglink}${cpg + 1}|" class="page-link">다음</a></li>
