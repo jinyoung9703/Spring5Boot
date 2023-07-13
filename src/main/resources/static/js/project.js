@@ -227,10 +227,23 @@ lgoutbtn?.addEventListener('click',()=>{
 });
 
 // board view
-let newbdbtn = document.querySelector("#newbdbtn");
-let modbdbtn = document.querySelector("#modbdbtn");
-let rmvbdbtn = document.querySelector("#rmvbdbtn");
-let lstbdbtn = document.querySelector("#lstbdbtn");
+// let newbdbtn = document.querySelector("#newbdbtn");
+// let modbdbtn = document.querySelector("#modbdbtn");
+// let rmvbdbtn = document.querySelector("#rmvbdbtn");
+// let lstbdbtn = document.querySelector("#lstbdbtn");
+let wrtbdbtn = document.querySelector("#wrtbdbtn");
+
+wrtbdbtn?.addEventListener('click',()=>{
+    let frm = document.forms.bdfrm;
+
+    if (frm.title.value === '') alert("제목을 작성하세요!!");
+    else if (frm.contents.value === '') alert("본문을 작성하세요!!");
+    else if (grecaptcha.getResponse() === '') alert("자동쓰기방지!!");
+    else {
+        frm.method = 'post';
+        frm.submit();
+    }
+});
 
 newbdbtn?.addEventListener('click',()=>{
     location.href='/board/write';
@@ -251,3 +264,12 @@ rmvbdbtn?.addEventListener('click',()=>{
 lstbdbtn?.addEventListener('click',()=>{
     location.href='/board/list/1';
 });
+
+// board write
+let cancelbtn3 = document.querySelector("#cancelbtn3");
+
+cancelbtn3?.addEventListener('click',()=> {
+   history.back();
+});
+
+
