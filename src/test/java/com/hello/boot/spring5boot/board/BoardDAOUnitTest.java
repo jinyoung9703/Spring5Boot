@@ -12,7 +12,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -63,6 +65,19 @@ public class BoardDAOUnitTest {
     @DisplayName("boardDAO countPage Test")
     void countPage() {
         int result = bdao.selectCountBoard();
+
+        assertNotNull(result);
+    }
+    @Test
+    @DisplayName("boardDAO findBoard Test")
+    void findBoard(){
+        Map<String, Object> params = new HashMap<>();
+        params.put("findtype","titcont");
+        params.put("findkey","의료");
+        params.put("stnum",0);
+
+        List<Board> result = bdao.selectFindBoard(params);
+
 
         assertNotNull(result);
     }
