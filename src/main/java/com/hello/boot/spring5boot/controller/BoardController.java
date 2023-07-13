@@ -28,11 +28,18 @@ public class BoardController {
 
         m.addAttribute("bds",bsrv.readBoard(cpg));
         m.addAttribute("cpg",cpg);
-        m.addAttribute("cntpg", bsrv.countBoard());
+        int cntpg = bsrv.countBoard();
+        m.addAttribute("cntpg",cntpg);
         m.addAttribute("stpg", ((cpg -1) /10 ) * 10 +1);
+
+        // 만일 , 현재페이지가 총페이지수 보다 크면
+        // 1페이지로 강제 이동
+        if (cpg  > cntpg)
+            return "redirect:/board/list/1";
 
         return "board/list";
     }
+
 
     @GetMapping("/view/{bno}")
     public String view(Model m, @PathVariable String bno){
