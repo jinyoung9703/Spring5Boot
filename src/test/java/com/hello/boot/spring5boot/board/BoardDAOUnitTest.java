@@ -59,6 +59,13 @@ public class BoardDAOUnitTest {
 
         assertEquals(result,1);
     }
+    @Test
+    @DisplayName("boardDAO countPage Test")
+    void countPage() {
+        int result = bdao.selectCountBoard();
+
+        assertNotNull(result);
+    }
 
 
 
