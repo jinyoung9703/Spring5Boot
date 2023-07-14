@@ -1,6 +1,7 @@
 package com.hello.boot.spring5boot.dao;
 
 import com.hello.boot.spring5boot.model.Pds;
+import com.hello.boot.spring5boot.model.PdsAttach;
 import com.hello.boot.spring5boot.mybatis.PdsMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,13 @@ public class PdsDAOImpl implements PdsDAO{
             cnt = pdsMapper.lastPdsPno();
 
         return cnt;
+    }
+
+    @Override
+    public int insertPdsAttach(PdsAttach pa) {
+
+        return pdsMapper.insertPdsAttach(pa);
+
     }
 
 }
