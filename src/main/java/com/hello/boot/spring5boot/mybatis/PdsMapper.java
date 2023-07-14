@@ -2,6 +2,7 @@ package com.hello.boot.spring5boot.mybatis;
 
 
 import com.hello.boot.spring5boot.model.Pds;
+import com.hello.boot.spring5boot.model.PdsAttach;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface PdsMapper {
     int insertPds(Pds b);
 
     int lastPdsPno();
+
+    int insertPdsAttach(PdsAttach pa);
 
     /*List<Pds> selectPds(int stnum);
 
