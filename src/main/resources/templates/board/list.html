@@ -6,7 +6,7 @@
 <th:block layout:fragment="content">
     <div id="main"
          th:with="pglink=${(#strings.isEmpty(fkey)) ?
-               '/board/list/' : '/board/find/'+ftype+'/'+fkey+'/'}">
+               '/board/list/' : '/board/find/' + ftype + '/' + fkey + '/'}">
         <div class="mt-5">
             <i class="fa-solid fa-chalkboard fa-2xl">게시판</i>
             <hr>
@@ -92,7 +92,7 @@
                             <!--  출력페이지 i가 총페이지수 cntpg보다 작거나 같으면 출력 -->
                             <!-- 1 ~ 10 숫자를 선언해서 i 값으로 빼온다-->
 
-                        <th:block th:each="i :${#numbers.sequence(stpg, stpg+9)}">
+                        <th:block th:each="i :${#numbers.sequence(stpg, stpg + 9)}">
                             <th:block th:if="${(i le cntpg)}">
                             <li th:class="${(i ne cpg) ? 'page-item' : 'page-item active'}">
                                 <a th:href="|${pglink}${i}|"class="page-link"
