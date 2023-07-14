@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/template}">
+      xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/template}">
 
 <th:block layout:fragment="content">
     <div id="main">
         <script src="https://www.google.com/recaptcha/api.js"></script>
 
+
         <div class="mt-5">
-            <i class="fa-solid fa-user-plus fa-2xl">회원가입</i>
+            <i class="fa-solid fa-user-group fa-2xl"> 회원가입</i>
             <hr>
         </div><!-- title -->
 
@@ -17,13 +18,13 @@
                 <li class="breadcrumb-item">
                     <button type="button" disabled
                             class="btn btn-success">이용약관</button></li>
-            <li class="breadcrumb-item">
+                <li class="breadcrumb-item">
                     <button type="button" disabled
                             class="btn btn-success">실명확인</button></li>
-            <li class="breadcrumb-item">
+                <li class="breadcrumb-item">
                     <button type="button" disabled
                             class="btn btn-success">정보입력</button></li>
-            <li class="breadcrumb-item">
+                <li class="breadcrumb-item">
                     <button type="button" disabled
                             class="btn btn-light">가입완료</button></li>
             </ul>
@@ -50,14 +51,12 @@
                         </div>
                     </div><!-- name -->
 
-                    <div class="row  mb-3">
+                    <div class="row mb-3">
                         <label for="jumin1" class="col-2 col-form-label text-danger text-end">주민번호</label>
                         <div class="col-3">
-                            <input type="text" name="jumin1" id="jumin1" class="form-control border-danger bg-light" readonly th:value="${session.checkme.jumin1}">
-                        </div><!-- jumin1 -->
+                            <input type="text" name="jumin1" id="jumin1" class="form-control border-danger bg-light" readonly th:value="${session.checkme.jumin1}"> </div><!-- jumin1 -->
                         <div class="col-3">
-                            <input type="text" id="jumin2" name="jumin2" class="form-control border-danger bg-light" readonly th:value="${session.checkme.jumin2}">
-                            </div><!-- jumin2 -->
+                            <input type="text" id="jumin2" name="jumin2" class="form-control border-danger bg-light" readonly th:value="${session.checkme.jumin2}"> </div><!-- jumin2 -->
                     </div><!-- jumin -->
 
                     <div class="row mb-3 align-items-center">
@@ -67,13 +66,11 @@
                                    class="form-control border-danger">
                         </div>
                         <div class="col-auto">
-                            <span id="uidmsg" class="text-dark">
-                                6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다
+                            <span id="uidmsg" class="text-warning">
+                                 6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다
                             </span>
                         </div>
                     </div><!-- userid -->
-
-
 
                     <div class="row mb-3 align-items-center">
                         <label for="pwd" class="col-2 col-form-label text-danger text-end">비밀번호</label>
@@ -83,7 +80,7 @@
                         </div>
                         <div class="col-auto">
                             <span id="pwdmsg" class="text-warning">
-                                6~16 자의 영문 대소문자, 숫자 및 특수문자 사용할 수 있습니다
+                                 6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다
                             </span>
                         </div>
                     </div><!-- passwd -->
@@ -91,7 +88,7 @@
                     <div class="row mb-3 align-items-center">
                         <label for="repasswd" class="col-2 col-form-label text-danger text-end">비밀번호 확인</label>
                         <div class="col-3">
-                            <input type="passwd" name="repasswd" id="repasswd"
+                            <input type="password" name="repasswd" id="repasswd"
                                    class="form-control border-danger">
                         </div>
                         <div class="col-auto">
@@ -104,33 +101,38 @@
                     <div class="row mb-3">
                         <label for="zip1" class="col-2 col-form-label text-danger text-end">우편번호</label>
                         <div class="col-1">
-                        <input type="text" class="form-control border-danger bg-light" name="zip1" id="zip1" readonly>
+                            <input type="text" id="zip1" name="zip1"
+                                   class="form-control border-danger bg-light" readonly>
                         </div>
                         <div class="col-1">
-                        <input type="text" class="form-control border-danger bg-light" name="zip2" id="zip2" readonly>
+                            <input type="text" id="zip2" name="zip2"
+                                   class="form-control border-danger bg-light" readonly>
                         </div>
                         <div class="col-3">
                             <button type="button" id="zipbtn" class="btn btn-dark">
-                                <i class="fa fa-circle-question"></i>우편번호 찾기</button>
+                                <i class="fa fa-circle-question"></i> 우편번호 찾기</button>
                         </div>
                     </div><!-- zipcode -->
 
                     <div class="row mb-3">
                         <label for="addr1" class="col-2 col-form-label text-danger text-end">주소</label>
                         <div class="col-3">
-                            <input type="text" class="form-control border-danger bg-light" name="addr1" id="addr1" readonly>
+                            <input type="text" id="addr1" name="addr1"
+                                   class="form-control border-danger bg-light" readonly>
                         </div>
                         <div class="col-4">
-                            <input type="text" class="form-control border-danger"  name="addr2" id="addr2">
+                            <input type="text" id="addr2" name="addr2"
+                                   class="form-control border-danger">
                         </div>
                     </div><!-- address -->
+
                     <div class="row mb-3">
                         <label for="email1" class="col-2 col-form-label text-danger text-end">전자우편 주소</label>
                         <div class="col-5">
                             <div class="input-group">
                                 <input type="text" id="email1" name="email1"
-                                class="form-control border-danger">
-                                <span class="input-group-text border-danger text-danger bg-danger bg-opacity-10">@</span>
+                                       class="form-control border-danger">
+                                <span class="input-group-text border-danger bg-danger bg-opacity-10">@</span>
                                 <input type="text" id="email2" name="email2" readonly
                                        class="form-control border-danger bg-light">
                             </div>
@@ -138,43 +140,43 @@
                         <div class="col-2">
                             <select id="email3" class="form-select border-danger">
                                 <option>선택하세요</option>
-                                <option>직접입력</option>
+                                <option>직접입력하기</option>
                                 <option>naver.com</option>
                                 <option>gmail.com</option>
-                                <option>nate.com</option>
+                                <option>hotmail.com</option>
                             </select>
                         </div>
                     </div><!-- email -->
 
                     <div class="row mb-3">
-                        <label for="phone1" class="col-2 col-form-label text-danger text-end">개인 연락처</label>
+                        <label for="phone1" class="col-2 col-form-label text-danger text-end">개인연락처</label>
                         <div class="col-2">
                             <select name="phone1" id="phone1" class="form-select border-danger">
                                 <option>국번</option>
                                 <option>010</option>
                                 <option>011</option>
-                                <option>016</option>
                             </select>
                         </div>
                         <div class="col-2">
                             <input type="text" name="phone2" id="phone2"
-                            class="form-control border-danger">
+                                   class="form-control border-danger">
                         </div>
                         <div class="col-2">
                             <input type="text" name="phone3" id="phone3"
                                    class="form-control border-danger">
                         </div>
                     </div><!-- phone -->
+
                     <div class="row mb-3">
                         <label for="g-recaptcha" class="col-2 col-form-label text-danger text-end">자동가입방지</label>
                         <div class="col-3">
                             <div class="g-recaptcha"
-                                 data-sitekey="6LfSW-EmAAAAAKb39mgf9pW82bwj6XVSckipuhtV"></div>
+                                 data-sitekey="6LdmIwgbAAAAAPO06Cyw44ZE0pkeDeMHEwVbgiM-"></div>
                             <input type="hidden" name="grecaptcha" id="g-recaptcha">
                         </div>
-                    </div>
-                </div><!-- join frm -->
+                    </div><!-- captcha -->
 
+                </div><!-- join frm -->
 
                 <div class="row">
                     <div class="col text-center">
@@ -197,64 +199,66 @@
 
         <div class="modal fade modal-lg" id="zipmodal"
              data-bs-backdrop="static" data-bs-keyboard="false">
-           <div class="modal-dialog">
-               <div class="modal-content">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-                   <div class="modal-header">
-                       <h3 class="modal-title">운편번호 찾기</h3>
-                       <button type="button" class="btn-close"
-                           data-bs-dismiss="modal"></button>
-                   </div>
-                   <div class="modal-body">
-                       <form name="zipfrm" id="zipfrm">
-                       <div class="row align-items-center justify-content-center">
-                           <label class="col-3 form-label text-danger text-end" for="dong">
-                               검색하실 주소의<br> 동이름을 입력하세요</label>
-                           <div class="col-4">
-                               <input type="text" name="dong" id="dong"
-                               class="form-control border-primary">
-                           </div>
-                           <div class="col-3">
-                               <button type="button" class="btn btn-primary" id="findzipbtn">
-                                   <i class="fas fa-search"></i>검색하기</button>
-                           </div>
-                           <hr class="w-75 mx-auto my-3">
-                           <p class="col-12 text-warning text-center">
-                               지역의 읍/면/동의 이름을 공백없이 입력하신 후,
-                               [검색하기] 버튼을 클릭하세요
-                           </p>
-                       </div><!-- find zip -->
-                       <div class="row">
-                           <div class="col-8 offset-2">
-                                <select class="form-select" id="addrlist"
-                                   name="addrlist" size="10">
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                               <option>서울시 관악구 남부순환로 1820</option>
-                           </select>
-                           </div>
-                       </div><!-- show zip-->
-                       </form>
-                   </div>
-                   <div class="modal-footer">
-                       <button type="button" class="btn btn-danger" id="sendzip">
-                           <i class="fas fa-check-square"></i> 선택하고 닫기</button>
-                   </div>
+                    <div class="modal-header">
+                        <h3 class="modal-title">우편번호 찾기</h3>
+                        <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="zipfrm" id="zipfrm">
+                            <div class="row align-items-center justify-content-center">
+                                <label class="col-3 form-label text-danger text-end" for="dong">
+                                    검색하실 주소의<br> 동이름을 입력하세요</label>
+                                <div class="col-4">
+                                    <input type="text" name="dong" id="dong"
+                                           class="form-control border-primary">
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-primary" id="findzipbtn">
+                                        <i class="fas fa-search"></i> 검색하기</button>
+                                </div>
+                                <hr class="w-75 mx-auto my-3">
+                                <p class="col-12 text-warning text-center">
+                                    지역의 읍/면/동의 이름을 공백없이 입력하신 후,
+                                    [검색하기] 버튼을 클릭하세요
+                                </p>
+                            </div><!-- find zip -->
+                            <div class="row">
+                                <div class="col-8 offset-2">
+                                    <select class="form-select" id="addrlist"
+                                            name="addrlist" size="10">
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                    </select>
+                                </div>
+                            </div><!-- show zip -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="sendzip">
+                            <i class="fas fa-check-square"></i> 선택하고 닫기</button>
+                    </div>
 
-               </div>
-           </div>
+                </div>
+            </div>
         </div><!-- zipcode modal -->
 
     </div>
