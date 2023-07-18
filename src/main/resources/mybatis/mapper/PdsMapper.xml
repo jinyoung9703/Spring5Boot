@@ -49,12 +49,16 @@
         order by pno desc limit #{stnum}, 25
     </select>
 
-    <select id="selectOnePds" resultMap="ppa">
+    <select id="selectOnePds" resultMap="ppa"> <!-- rsultMap을 만들어-->
         select * from ppa where pno = #{pno}
     </select>
 
     <select id="selectCountPds">
         select ceil(count(pno) / 25) cntpg from pds
+    </select>
+
+    <select id="selectOnePdsAttach" resultType="PdsAttach"> <!-- 테이블명과 동일 -->
+        select * from pdsattach where pno = #{pno} <!-- 대소문자 구분 x -->
     </select>
 
 <!--    <update id="updateViewPds">-->
