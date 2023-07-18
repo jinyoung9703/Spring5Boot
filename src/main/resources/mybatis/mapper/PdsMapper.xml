@@ -58,7 +58,17 @@
     </select>
 
     <select id="selectOnePdsAttach" resultType="PdsAttach"> <!-- 테이블명과 동일 -->
-        select * from pdsattach where pno = #{pno} <!-- 대소문자 구분 x -->
+        select * from pdsattach where pno = #{pno} <!-- 테이블명과 동일 대소문자 구분 x -->
+    </select>
+
+    <insert id="insertPdsComment" parameterType="PdsComment">
+        insert into pdscomments (userid,comments,ref,pno)
+        value (#{userid},#{comments},#{ref},#{pno})
+    </insert>
+
+    <select id="selectOnePdsComment" resultType="PdsComment">
+        select * from pdscomments where pno = #{pno}
+        order by ref
     </select>
 
 <!--    <update id="updateViewPds">-->
