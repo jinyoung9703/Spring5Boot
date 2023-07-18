@@ -23,7 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class PdsControllerUnitTest {
 
-    @Autowired private MockMvc mvc;
+    @Autowired
+    private MockMvc mvc;
 
     @Test
     @DisplayName("PdsController upload Test")
@@ -31,18 +32,26 @@ public class PdsControllerUnitTest {
 
         String fpath = "C:/Java/abc123.jpg";
         FileInputStream fis = new FileInputStream(fpath);
-        
+
         // MkckMultipartFile(폼이름,파일명,MIME,파일객체)
         MockMultipartFile attach = new MockMultipartFile(
-          "attach", "abc123.jpg", "image/png", fis
+                "attach", "abc123.jpg", "image/png", fis
         );
 
         mvc.perform(multipart("/pds/write").file(attach)
-                .param("title","aaa")
-                .param("userid","abc123")
-                .param("contents","bbb")
-                .param("ipaddr","127.0.0.1"))
+                        .param("title", "aaa")
+                        .param("userid", "abc123")
+                        .param("contents", "bbb")
+                        .param("ipaddr", "127.0.0.1"))
                 .andExpect(status().is3xxRedirection()) // 300 확인 요청?
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("PdsController download Test")
+    void download() throws Exception {
+        mvc.perform(get("/pds/down/14"))
+                .andExpect(status().is(200))
                 .andDo(print());
     }
 }
