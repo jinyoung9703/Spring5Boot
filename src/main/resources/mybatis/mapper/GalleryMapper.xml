@@ -23,11 +23,16 @@
 
         <collection property="ga" resultMap="ga"/>
     </resultMap>
-
+<!-- into에는 테이블명 소문자로 넣어줘야함 -->
     <insert id="insertGallery" parameterType="Gallery">
-        insert into Gallery (userid,title,contents,ipaddr)
+        insert into gallery (userid,title,contents,ipaddr)
         value (#{userid},#{title},#{contents},#{ipaddr})
     </insert>
+
+    <select id="lastGalGno">
+        select AUTO_INCREMENT -1 gno
+        from information_schema.TABLES where TABLE_NAME = 'gallery'
+    </select>
 
     <insert id="insertGalAttach" parameterType="GalAttach">
         insert into galattach (gno,fname,fsize)
