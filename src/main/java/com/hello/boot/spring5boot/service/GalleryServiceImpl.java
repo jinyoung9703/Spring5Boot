@@ -49,4 +49,9 @@ public class GalleryServiceImpl implements GalleryService {
 
         // 업로드한 뒤에 pno를 집어 넣었는데 gal를 썸네일이 들어간후
     }
+
+    @Override
+    public Gallery readOneGallery(String gno) {
+        return gdao.selectOneGallery(gno);
+    }
 }
