@@ -37,17 +37,18 @@
                     <p th:text="${g.contents}">본문글</p>
 
                     <th:block th:each="img : ${#strings.arraySplit(g.ga.fname,';')}">
-                        <img th:src="|http://localhost/cdn/${img}|">
+                        <img th:src="|http://localhost/cdn/${img}|"
+                        class="img-fluid"> <!-- 이미지가 크기에 맞게 들어옴 -->
                     </th:block>
                 </td></tr>
                 <tr>
                     <td class="vinfo" colspan="2"
                         th:with="fsizes=${#strings.arraySplit(g.ga.fsize, ';')}">
-                        <th:block th:each="f : ${fsizes}">
-                             <span th:text="|${f}KB|"></span>
+                        <th:block th:each="fn, stat : ${#strings.arraySplit(g.ga.fname, ';')}">
+                             <div th:text="|${fn} (${fsizes[__${stat.index}__]}KB)|"></div>
                         </th:block>
                     </td>
-                </tr>
+                </tr><!-- 파일이름과 파일 사이즈를 보이겠다 -->
             </table>
         </div><!-- 본문글 -->
 
